@@ -1,12 +1,7 @@
 <template>
-  <div class="bg-blue-500">
-    <h1>Testando</h1>
-  </div>
-  <p>{{ name }}</p>
-  <MyComponents />
+  <Dashboard />
 </template>
 
 <script setup>
-import MyComponents from '../components/MyComponents.vue';
-const name = 'Fernando Batista'
+import Dashboard from '../layouts/Dashboard.vue';
 </script>
