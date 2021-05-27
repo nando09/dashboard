@@ -2,14 +2,11 @@
   <div class="bg-blue-500">
     <h1>Testando</h1>
   </div>
+  <p>{{ name }}</p>
+  <MyComponents />
 </template>
 
-<script>
-// @ is an alias to /src
-
-export default {
-  name: 'Home',
-  components: {
-  }
-}
+<script setup>
+import MyComponents from '../components/MyComponents.vue';
+const name = 'Fernando Batista'
 </script>
