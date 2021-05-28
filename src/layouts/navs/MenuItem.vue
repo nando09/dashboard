@@ -13,6 +13,8 @@
 import { defineProps } from 'vue'
 import HomeIcon from '../../components/icons/HomeIcon.vue'
 defineProps({
-    icon: { default: null }
+    icon: {
+        default: null
+    }
 })
 </script>

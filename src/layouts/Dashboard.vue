@@ -14,8 +14,8 @@
                 </div>
             </nav>
         </div>
-        <div class="p-4 flex-1">
-            <header class="flex items-center justify-between">
+        <div class="flex-1 h-screen overflow-y-auto relative">
+            <header class="p-4 bg-gray-800 z-20 flex sticky top-0 items-center justify-between">
                 <InputSearch class="w-96"/>
                 <div class="flex items-center">
                     <div class="flex items-center space-x-3">
@@ -27,31 +27,35 @@
                 </div>
             </header>
 
-            <h1 class="font-bold text-4xl mt-6 mb-4">Discover</h1>
-
-            <div class="grid gap-4 grid-cols-12">
-                <div class="col-span-8 h-96 rounded-3xl overflow-hidden relative">
-                    <div class="flex w-full h-full">
-                        <img src="https://via.placeholder.com/2000X1400" class="object-cover w-full">
+            <div class="px-5 pb-5 content">
+                <h1 class="font-bold text-4xl mt-6 mb-4">Discover</h1>
+                <div class="grid gap-4 grid-cols-12">
+                    <div class="col-span-8 h-96 rounded-3xl overflow-hidden relative">
+                        <div class="flex w-full h-full">
+                            <img src="https://via.placeholder.com/2000X1400" class="object-cover w-full">
+                        </div>
+                        <div class="z-10 absolute top-0 p-6 w-full h-full">
+                            <h3 class="text-2xl max-w-xs">How to do Basic Jumping and how to landing safely</h3>
+                            <div class="absolute right-6 bottom-6 px-2 py-1 bg-gray-800 bg-opacity-50 text-white rounded-lg">
+                                7 Minutes
+                            </div>
+                        </div>
                     </div>
-                    <div class="z-10 absolute top-0 p-6 w-full h-full">
-                        <h3 class="text-2xl w-52">How to do Basic Jumping and how to landing safely</h3>
-                        <div class="absolute right-6 bottom-6 px-2 py-1 bg-gray-800 bg-opacity-50 text-white rounded-lg">
-                            7 Minutes
+                    <div class="col-span-4 h-96 rounded-3xl overflow-hidden relative">
+                        <div class="flex w-full h-full">
+                            <img src="https://via.placeholder.com/2000X1400" class="object-cover w-full">
+                        </div>
+                        <div class="z-10 absolute top-0 p-6 w-full h-full">
+                            <h3 class="text-2xl max-w-xs">How to do Basic Jumping and how to landing safely</h3>
+                            <div class="absolute right-6 bottom-6 px-2 py-1 bg-gray-800 bg-opacity-50 text-white rounded-lg">
+                                7 Minutes
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-span-4 h-96 rounded-3xl overflow-hidden relative">
-                    <div class="flex w-full h-full">
-                        <img src="https://via.placeholder.com/2000X1400" class="object-cover w-full">
-                    </div>
-                    <div class="z-10 absolute top-0 p-6 w-full h-full">
-                        <h3 class="text-2xl max-w-xs">How to do Basic Jumping and how to landing safely</h3>
-                        <div class="absolute right-6 bottom-6 px-2 py-1 bg-gray-800 bg-opacity-50 text-white rounded-lg">
-                            7 Minutes
-                        </div>
-                    </div>
+                <h1 class="text-2xl mt-6 mb-4">Mast Watched</h1>
+                <div class="grid grid-cols-4 gap-4">
+                    <CardItem v-for="n of 10"></CardItem>
                 </div>
             </div>
         </div>
@@ -65,4 +69,5 @@
     import MenuItem from './navs/MenuItem.vue'
     import InputSearch from '../components/input/InputSearch.vue'
     import Avatar from '../components/Avatar.vue'
+    import CardItem from '../components/CardItem.vue'
 </script>
