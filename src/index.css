@@ -4,11 +4,11 @@
 @tailwind utilities;
 
 .header-height{
-    height: 10%;
+    height: 7vh;
 }
 
 .content-height{
-    height: 90%;
+    height: 93vh;
 }
 
 ::-webkit-scrollbar {
