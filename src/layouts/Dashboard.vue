@@ -15,7 +15,7 @@
             </nav>
         </div>
         <div class="flex-1 h-screen overflow-y-auto relative">
-            <header class="p-4 bg-gray-800 z-20 flex sticky top-0 items-center justify-between">
+            <header class="p-4 header-height bg-gray-800 z-20 flex sticky top-0 items-center justify-between">
                 <InputSearch class="w-96"/>
                 <div class="flex items-center">
                     <div class="flex items-center space-x-3">
@@ -27,8 +27,8 @@
                 </div>
             </header>
 
-            <div class="px-5 pb-5 content">
-                <h1 class="font-bold text-4xl mt-6 mb-4">Discover</h1>
+            <div class="px-5 pb-5 content content-height overflow-y-auto ">
+                <h1 class="font-bold text-4xl mb-4">Discover</h1>
                 <div class="grid gap-4 grid-cols-12">
                     <div class="col-span-8 h-96 rounded-3xl overflow-hidden relative">
                         <div class="flex w-full h-full">
