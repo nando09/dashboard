@@ -2,7 +2,7 @@
   <div class="grid grid-rows-6 grid-cols-12 h-screen">
     <Aside class="row-span-6 col-span-1 h-full shadow-lg"/>
     <div class="col-span-11 grid grid-rows-2">
-      <Top class="row-span-1 flex items-center shadow-lg" />
+      <Top class="row-span-1 shadow-lg" />
       <div class="row-span-1">
         <h1 class="h-full font-semibold uppercase flex items-center justify-center">Testando</h1>
       </div>
