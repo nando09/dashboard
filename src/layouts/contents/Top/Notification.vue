@@ -10,7 +10,7 @@
             <BellIcon class="w-5 h-5 text-orange-500"/>
         </button>
         <div class="opacity-0 invisible dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-2 scale-95">
-        <div class="absolute right-0 w-56 mt-2 origin-top-right bg-orange-700 opacity-90 border border-orange-500 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+        <div class="absolute right-0 w-56 mt-2 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
         <div x-show="dropdownOpen" class="absolute right-0 mt-2 bg-white rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
             <div class="py-2">
                 <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
