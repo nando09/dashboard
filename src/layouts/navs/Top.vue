@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-orange-300 grid grid-cols-10">
+  <div class="w-full grid grid-cols-10">
     <div class="col-span-8 flex justify-end items-center ">
       <Search />
     </div>
