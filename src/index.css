@@ -62,3 +62,9 @@
 	transform: translate(0) scale(1);
 	visibility: visible;
 }
+
+.menu-aside-button:hover > .menu-aside-hidden{
+	opacity:1;
+	transform: translate(0) scale(1);
+	visibility: visible;
+}

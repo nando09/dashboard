@@ -1,6 +1,11 @@
 <template>
-  <div class="w-full grid grid-cols-10">
-    <div class="col-span-8 flex justify-end items-center ">
+  <div class="w-full grid grid-cols-12">
+    <div class="col-span-1">
+        <div class="bg-orange-200 h-full w-full flex justify-center items-center uppercase font-bold text-orange-600 rounded-br-xl">
+            Stock<span class=" opacity-50">ys</span>
+        </div>
+    </div>
+    <div class="col-span-9 flex justify-end items-center ">
       <Search />
     </div>
     <div class="col-span-2 flex items-center justify-around">
