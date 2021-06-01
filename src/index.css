@@ -73,11 +73,15 @@ body{
 	visibility: visible;
 }
 
+.menu-aside-button:hover > .menu-hamburguer > div{
+	background: rgb(234, 88, 12);
+}
+
 .router-link-exact-active{
 	background: rgb(234, 88, 12);
 }
 
-.menu-aside-button > .router-link-active {
+.menu-aside-button .router-link-active {
 	background: rgb(234, 88, 12);
     color: white;
     border: 2px solid rgb(234, 88, 12);

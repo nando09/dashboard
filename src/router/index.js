@@ -8,6 +8,7 @@ import Employees from '../views/Employees.vue';
 import Products from '../views/Products.vue';
 import Settings from '../views/Settings.vue';
 import SettingsProfile from '../views/SettingsProfile.vue';
+import SettingsGraphics from '../views/SettingsGraphics.vue';
 
 import Supplier from '../views/Supplier.vue';
 import Tasks from '../views/Tasks.vue';
@@ -60,6 +61,10 @@ const routes = [
       {
         path: '/ajustes/perfis',
         component: SettingsProfile
+      },
+      {
+        path: '/ajustes/graficos',
+        component: SettingsGraphics
       }
     ]
   },

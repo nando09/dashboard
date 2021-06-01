@@ -1,5 +1,5 @@
 <template>
-  <Default :menu="ContentProfile" :subMenus="subMenus"/>
+  <Default :menu="ContentGraphics" :subMenus="subMenus"/>
 </template>
 
 <script setup>
@@ -22,5 +22,5 @@ const subMenus = [
 ];
 
 import Default from '../components/Default.vue';
-import ContentProfile from '../layouts/contents/Settings/ContentProfile.vue';
+import ContentGraphics from '../layouts/contents/Settings/ContentGraphics.vue';
 </script>
