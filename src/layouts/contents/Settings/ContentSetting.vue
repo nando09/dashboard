@@ -2,11 +2,8 @@
     <div class="grid grid-cols-12 grid-rows-6">
 
         <div class="col-span-12 row-span-6">
-            <div>
-                <h2 class="text-2xl font-semibold leading-tight">Users</h2>
-            </div>
-            <div class="my-2 flex sm:flex-row flex-col">
-                <div class="flex flex-row mb-1 sm:mb-0">
+            <div class="flex sm:flex-row flex-col mb-6">
+                <div class="flex flex-row sm:mb-0">
                     <div class="relative">
                         <select
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -48,8 +45,8 @@
                         class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                 </div>
             </div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <div class="">
+                <div class="inline-block min-w-full shadow rounded-lg">
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr>

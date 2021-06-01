@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+	overflow: hidden;
+}
+
 .header-height{
     height: 7vh;
 }
@@ -23,7 +27,7 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #046877; 
+    background-color: rgba(251, 146, 60);
     border-radius: 10px;
 }
 
@@ -68,3 +72,14 @@
 	transform: translate(0) scale(1);
 	visibility: visible;
 }
+
+.router-link-exact-active{
+	background: rgb(234, 88, 12);
+}
+
+.menu-aside-button > .router-link-active {
+	background: rgb(234, 88, 12);
+    color: white;
+    border: 2px solid rgb(234, 88, 12);
+}
+

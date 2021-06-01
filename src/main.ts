@@ -8,6 +8,7 @@ import { faHome, faUsers, faChartLine, faClipboardCheck, faCubes, faSlidersH, fa
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 // <i class="fas fa-people-arrows"></i>
 library.add(faHome, faUsers, faChartLine, faClipboardCheck, faCubes, faSlidersH, faTasks, faPeopleArrows, faParachuteBox);
+
 createApp(App)
     .use(router)
     .component("font-awesome-icon", FontAwesomeIcon)

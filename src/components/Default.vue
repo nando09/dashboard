@@ -6,7 +6,7 @@
         <Aside :subMenus="subMenus" />
       </div>
     </div>
-    <component :is="menu" class="row-span-5 col-span-12"/>
+    <component :is="menu" class="row-span-5 col-span-12 overflow-y-auto px-10"/>
   </div>
 </template>
 <script lang="ts" setup>
