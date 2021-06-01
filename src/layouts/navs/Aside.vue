@@ -15,53 +15,60 @@
         </div>
         </div>
     </div>
-    <div class="col-span-11">
-        <h1 class="h-full font-semibold uppercase flex items-center justify-center">Testando</h1>
+    <div class="col-span-11 flex items-center text-white">
+        <router-link :to="menu.router" v-for="menu in subMenus" :key="menu.id" class="p-1 px-4 bg-orange-300 rounded m-2">
+            {{ menu.name }}
+        </router-link>
     </div>
 </template>
 <script lang="ts" setup>
-// import MenusAside from '../contents/Aside/Menus.vue'
+import { defineProps } from 'vue'
+defineProps({
+    subMenus: {
+      default: []
+    }
+});
 
 const menus = [
     {
         id: 1,
         name: 'home',
-        router: '/'
+        router: '/home'
     },
     {
         id: 2,
         name: 'chart-line',
-        router: '/goal'
+        router: '/metas'
     },
     {
         id: 3,
         name: 'tasks',
-        router: '/plan'
+        router: '/tarefas'
     },
     {
         id: 4,
         name: 'people-arrows',
-        router: '/product'
+        router: '/clientes'
     },
     {
         id: 5,
         name: 'parachute-box',
-        router: '/setting'
+        router: '/fornecedor'
     },
     {
         id: 6,
         name: 'cubes',
-        router: '/users'
+        router: '/produtos'
     },
     {
         id: 7,
         name: 'users',
-        router: '/suplier'
+        router: '/funcionarios'
     },
     {
         id: 8,
         name: 'sliders-h',
-        router: '/parachute'
+        router: '/ajustes'
     }
 ];
 </script>

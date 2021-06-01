@@ -3,7 +3,7 @@
     <div class="col-span-12 grid grid-rows-2">
       <Top class="row-span-1" />
       <div class="row-span-1 grid grid-cols-12">
-        <Aside />
+        <Aside :subMenus="subMenus" />
       </div>
     </div>
     <component :is="menu" class="row-span-5 col-span-12"/>
@@ -17,6 +17,9 @@ import { defineProps } from 'vue'
 defineProps({
     menu: {
         default: null
+    },
+    subMenus: {
+      default: []
     }
 })
 

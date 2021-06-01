@@ -4,5 +4,5 @@
 
 <script setup>
 import Default from '../components/Default.vue';
-import ContentHome from '../layouts/contents/ContentHome.vue';
+import ContentHome from '../layouts/contents/Home/ContentHome.vue';
 </script>
