@@ -79,7 +79,7 @@
                                     Status
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider text-right">
                                     Ações
                                 </th>
                             </tr>
@@ -128,7 +128,7 @@
                                         <span class="relative">Inactive</span>
                                     </span>
                                 </td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-right">
                                     <button @click="editUserModal(user)" class=" bg-orange-300 p-1 rounded text-yellow-800 mr-2 focus:outline-none">Editar</button>
                                     <button @click="passwordUserModal(user)" class=" bg-blue-300 p-1 rounded text-blue-800 mr-2 focus:outline-none">Senha</button>
                                     <button @click="deleteUserModal(user)" class=" bg-red-300 p-1 rounded text-red-800 focus:outline-none">Apagar</button>

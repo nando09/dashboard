@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full grid grid-cols-12">
+  <div class="w-full grid grid-cols-12 z-10">
     <div class="col-span-1">
         <div class="bg-orange-200 h-full w-full flex justify-center items-center uppercase font-bold text-orange-600 rounded-br-xl">
             Stock<span class=" opacity-50">ys</span>
