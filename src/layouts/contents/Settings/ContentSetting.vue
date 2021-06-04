@@ -372,7 +372,7 @@
                             <button
                             type="button"
                             class="inline-flex mr-2 justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                            @click="cadastrar"
+                            @click="deleteUser"
                             >
                             Deletar
                             </button>
@@ -401,6 +401,8 @@
         DialogOverlay,
         DialogTitle,
     } from '@headlessui/vue'
+    import { createToast } from 'mosha-vue-toastify';
+    import 'mosha-vue-toastify/dist/style.css'
 
     const listNow = ref(5);
     const pagInit = ref(0);
@@ -788,7 +790,18 @@
     };
 
     const deleteUser = (user: {}) => {
-        isDelete.value = true;
+        createToast({
+            title: 'Deletado,',
+            description: 'com sucesso!'
+        },
+        {
+            timeout: 2000,
+            transition: 'slide',
+            type: 'success',
+            position: 'top-right'
+        })
+
+        isDelete.value = false;
     };
 
 
@@ -925,6 +938,17 @@
         };
 
         console.log(data);
+
+        createToast({
+            title: 'Atualizado,',
+            description: 'com sucesso!'
+        },
+        {
+            timeout: 2000,
+            transition: 'slide',
+            type: 'success',
+            position: 'top-right'
+        })
     }
 
     const cadastrar = () => {
@@ -937,7 +961,18 @@
             perfil:     perfil.value
         };
 
-        console.log(data);
+        isOpen.value = false;
+
+        createToast({
+            title: 'Cadastrado,',
+            description: 'com sucesso!'
+        },
+        {
+            timeout: 2000,
+            transition: 'slide',
+            type: 'success',
+            position: 'top-right'
+        })
     }
 
     const closeModal = () => {
