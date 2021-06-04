@@ -130,6 +130,7 @@
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                     <button @click="editUserModal(user)" class=" bg-orange-300 p-1 rounded text-yellow-800 mr-2 focus:outline-none">Editar</button>
+                                    <button @click="passwordUserModal(user)" class=" bg-blue-300 p-1 rounded text-blue-800 mr-2 focus:outline-none">Senha</button>
                                     <button @click="deleteUserModal(user)" class=" bg-red-300 p-1 rounded text-red-800 focus:outline-none">Apagar</button>
                                 </td>
                             </tr>
@@ -390,6 +391,75 @@
             </div>
             </Dialog>
         </TransitionRoot>
+
+        <TransitionRoot appear :show="isPassword" as="template">
+            <Dialog as="div" @close="closeModal">
+            <div class="fixed inset-0 z-10 overflow-y-auto">
+                <div class="min-h-screen px-4 text-center">
+                <DialogOverlay class="fixed inset-0 bg-black opacity-50" />
+
+                <span class="inline-block h-screen align-middle" aria-hidden="true">
+                    &#8203;
+                </span>
+
+                <TransitionChild
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0 scale-95"
+                    enter-to="opacity-100 scale-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100 scale-100"
+                    leave-to="opacity-0 scale-95"
+                >
+                    <div class="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                        <p class="font-bold p-2 text-center">{{ nome }}</p>
+                        <div>
+                            <div class="flex flex-wrap -mx-3 mb-6">
+                                <input type="hidden" class="invisible" v-model="id">
+                                <div class="w-full px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="grid-password"
+                                >
+                                    Nova senha
+                                </label>
+                                <input
+                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-password"
+                                    v-model="senha"
+                                    type="password"
+                                    placeholder="******************"
+                                />
+                                <p class="text-gray-600 text-xs italic">
+                                    Aqui você altera somente a senha do usuario {{ nome }}
+                                </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-around">
+                            <button
+                            type="button"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
+                            @click="atualizarSenha"
+                            >
+                            Atualizar
+                            </button>
+
+                            <button
+                            type="button"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-transparent rounded-md hover:bg-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
+                            @click="closeModal"
+                            >
+                            Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </TransitionChild>
+                </div>
+            </div>
+            </Dialog>
+        </TransitionRoot>
+
     </div>
 </template>
 <script lang="ts" setup>
@@ -420,6 +490,9 @@
 
     const isOpen = ref(false);
     const isDelete = ref(false);
+    const isPassword = ref(false);
+
+
     const usuariosList = ref([
             {
                 id: 1,
@@ -766,6 +839,13 @@
     const profileSelected = ref('Todos');
     const nameSearch = ref('');
 
+    const passwordUserModal = (user: {}) => {
+        id.value = user.id;
+        nome.value = user.name;
+
+        isPassword.value = true;
+    }
+
     const editUserModal = (user: {}) => {
         id.value = user.id;
         nome.value = user.name;
@@ -951,6 +1031,7 @@
         })
     }
 
+
     const cadastrar = () => {
         let data = {
             nome:       nome.value,
@@ -975,9 +1056,30 @@
         })
     }
 
+    const atualizarSenha = () => {
+        let data = {
+            id:         id.value,
+            senha:      senha.value
+        };
+
+        console.log(data);
+
+        createToast({
+            title: 'Senha atualizada,',
+            description: 'com sucesso!'
+        },
+        {
+            timeout: 2000,
+            transition: 'slide',
+            type: 'success',
+            position: 'top-right'
+        })
+    }
+
     const closeModal = () => {
         isOpen.value = false;
         isDelete.value = false;
+        isPassword.value = false;
     }
 
     const openModal = () => {
