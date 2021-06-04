@@ -78,6 +78,10 @@
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Status
                                 </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Ações
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +127,10 @@
                                             class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
                                         <span class="relative">Inactive</span>
                                     </span>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <button @click="editUserModal(user)" class=" bg-orange-300 p-1 rounded text-yellow-800 mr-2 focus:outline-none">Editar</button>
+                                    <button @click="deleteUserModal(user)" class=" bg-red-300 p-1 rounded text-red-800 focus:outline-none">Apagar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -176,6 +184,7 @@
                         <div>
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <input type="hidden" class="invisible" v-model="id">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="grid-first-name"
@@ -207,7 +216,7 @@
                                 />
                                 </div>
                             </div>
-                            <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="flex flex-wrap -mx-3 mb-6" v-if="id == 0">
                                 <div class="w-full px-3">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -305,13 +314,71 @@
                             type="button"
                             class="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
                             @click="cadastrar"
+                            v-if="id == 0"
                             >
                             Cadastrar
                             </button>
 
                             <button
                             type="button"
-                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-green-900 bg-green-100 border border-transparent rounded-md hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-green-500"
+                            @click="atualizar"
+                            v-else
+                            >
+                            Atualizar
+                            </button>
+
+                            <button
+                            type="button"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-transparent rounded-md hover:bg-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
+                            @click="closeModal"
+                            >
+                            Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </TransitionChild>
+                </div>
+            </div>
+            </Dialog>
+        </TransitionRoot>
+
+        <TransitionRoot appear :show="isDelete" as="template">
+            <Dialog as="div" @close="closeModal">
+            <div class="fixed inset-0 z-10 overflow-y-auto">
+                <div class="min-h-screen px-4 text-center">
+                <DialogOverlay class="fixed inset-0 bg-black opacity-50" />
+
+                <span class="inline-block h-screen align-middle" aria-hidden="true">
+                    &#8203;
+                </span>
+
+                <TransitionChild
+                    as="template"
+                    enter="duration-300 ease-out"
+                    enter-from="opacity-0 scale-95"
+                    enter-to="opacity-100 scale-100"
+                    leave="duration-200 ease-in"
+                    leave-from="opacity-100 scale-100"
+                    leave-to="opacity-0 scale-95"
+                >
+                    <div class="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                        <div class="p-6 bg-white rounded-2xl text-center">
+                            Tem certeza que deseja <span class="font-bold text-red-600">deletar</span>,
+                            <br>
+                            <span class="font-bold">{{ nome }} {{ sobrenome }} ?</span>
+                        </div>
+                        <div class="flex justify-center">
+                            <button
+                            type="button"
+                            class="inline-flex mr-2 justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                            @click="cadastrar"
+                            >
+                            Deletar
+                            </button>
+                            <button
+                            type="button"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-300 border border-transparent rounded-md hover:bg-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-500"
                             @click="closeModal"
                             >
                             Cancelar
@@ -340,13 +407,17 @@
     const pagEnd = ref(5);
     const currentPage = ref(1);
     const pageQuantity = ref(0);
+
+    const id = ref('');
     const nome = ref('');
     const sobrenome = ref('');
     const senha = ref('');
     const email = ref('');
     const usuario = ref('');
     const perfil = ref('');
+
     const isOpen = ref(false);
+    const isDelete = ref(false);
     const usuariosList = ref([
             {
                 id: 1,
@@ -693,6 +764,34 @@
     const profileSelected = ref('Todos');
     const nameSearch = ref('');
 
+    const editUserModal = (user: {}) => {
+        id.value = user.id;
+        nome.value = user.name;
+        sobrenome.value = user.name;
+        email.value = 'jane@doe.com';
+        usuario.value = user.name;
+        perfil.value = user.profile;
+
+        isOpen.value = true;
+    };
+
+    const deleteUserModal = (user: any) => {
+        id.value = user.id;
+        nome.value = user.name;
+        sobrenome.value = user.name;
+
+        isDelete.value = true;
+    };
+
+    const editUser = (user: {}) => {
+        console.log(id);
+    };
+
+    const deleteUser = (user: {}) => {
+        isDelete.value = true;
+    };
+
+
     const prevPage = () => {
         currentPage.value--;
         evenNumbers();
@@ -815,6 +914,19 @@
         usuariosListCurrentPage.value = arr;
     }
 
+    const atualizar = () => {
+        let data = {
+            id:         id.value,
+            nome:       nome.value,
+            sobrenome:  sobrenome.value,
+            email:      email.value,
+            usuario:    usuario.value,
+            perfil:     perfil.value
+        };
+
+        console.log(data);
+    }
+
     const cadastrar = () => {
         let data = {
             nome:       nome.value,
@@ -830,9 +942,17 @@
 
     const closeModal = () => {
         isOpen.value = false;
+        isDelete.value = false;
     }
 
     const openModal = () => {
+        id.value = '';
+        nome.value = '';
+        sobrenome.value = '';
+        email.value = '';
+        usuario.value = '';
+        perfil.value = '';
+
         isOpen.value = true;
     }
 </script>
