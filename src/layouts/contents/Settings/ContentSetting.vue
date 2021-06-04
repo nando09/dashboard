@@ -44,7 +44,9 @@
                         </svg>
                     </span>
                     <input placeholder="Nome do usuário"
-                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                        @keyup="searchNome($event.target.value)"
+                    />
                 </div>
                 <div class='absolute right-0'>
                     <button
@@ -710,7 +712,21 @@
         currentPage.value = 1;
         for (var i = 0; i < usuariosList.value.length; i++) {
             if((usuariosList.value[i].profile == event) || (event == 'Todos')){
-                // console.log(i);
+                arr.push(usuariosList.value[i]);
+            }
+        }
+
+        usuariosListCurrent.value = arr;
+        listAll.value = usuariosListCurrent.value.length;
+        console.log(arr);
+        evenNumbers();
+    }
+
+    const searchNome = (event: string) => {
+        const arr = [];
+        currentPage.value = 1;
+        for (var i = 0; i < usuariosList.value.length; i++) {
+            if( usuariosList.value[i].name.toLowerCase().indexOf(event.toLowerCase()) >= 0){
                 arr.push(usuariosList.value[i]);
             }
         }
@@ -779,6 +795,7 @@
     }
 
     const evenNumbers = () => {
+        console.log('Entrei');
         const arr = [];
         pagEnd.value = (parseInt(currentPage.value) * parseInt(listNow.value));
         pagInit.value = (parseInt(pagEnd.value) - parseInt(listNow.value)) + 1;
@@ -789,11 +806,8 @@
         pageQuantity.value = Math.ceil((listAll.value / listNow.value));
 
         for (var i = pagInit.value; i <= pagEnd.value; i++) {
-            // console.log(usuariosListCurrent.value[i - 1]);
             arr.push(usuariosListCurrent.value[i - 1]);
         }
-
-        // console.log(arr);
 
         usuariosListCurrentPage.value = arr;
     }
