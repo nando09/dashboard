@@ -691,6 +691,7 @@
     const evenNumbersSelect = ref([]);
     const listPerfil = ref([]);
     const profileSelected = ref('Todos');
+    const nameSearch = ref('');
 
     const prevPage = () => {
         currentPage.value--;
@@ -709,9 +710,11 @@
 
     const getProfile = (event: string) => {
         const arr = [];
+        profileSelected.value = event;
         currentPage.value = 1;
         for (var i = 0; i < usuariosList.value.length; i++) {
-            if((usuariosList.value[i].profile == event) || (event == 'Todos')){
+            if((nameSearch.value == '' || (usuariosList.value[i].name.toLowerCase().indexOf(nameSearch.value.toLowerCase()) >= 0)) && ((profileSelected.value == usuariosList.value[i].profile) ||  (profileSelected.value == 'Todos') ) ){
+            // if((usuariosList.value[i].profile == event) || (event == 'Todos')){
                 arr.push(usuariosList.value[i]);
             }
         }
@@ -723,10 +726,11 @@
     }
 
     const searchNome = (event: string) => {
+        nameSearch.value = event;
         const arr = [];
         currentPage.value = 1;
         for (var i = 0; i < usuariosList.value.length; i++) {
-            if( usuariosList.value[i].name.toLowerCase().indexOf(event.toLowerCase()) >= 0){
+            if((usuariosList.value[i].name.toLowerCase().indexOf(event.toLowerCase()) >= 0) && ((profileSelected.value == usuariosList.value[i].profile) ||  (profileSelected.value == 'Todos') ) ){
                 arr.push(usuariosList.value[i]);
             }
         }
@@ -795,7 +799,6 @@
     }
 
     const evenNumbers = () => {
-        console.log('Entrei');
         const arr = [];
         pagEnd.value = (parseInt(currentPage.value) * parseInt(listNow.value));
         pagInit.value = (parseInt(pagEnd.value) - parseInt(listNow.value)) + 1;
