@@ -250,29 +250,18 @@
                 >
                     <div class="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                         <p class="font-bold p-2 text-center">{{ nome }}</p>
-                        <div class="p-2 mb-4">
-                            <Disclosure v-slot="{ open }">
+                        <div class="p-1 mb-4 overflow-y-auto max-h-80">
+                            <Disclosure v-slot="{ open }" v-for="profile in routers">
                                 <DisclosureButton
                                 class="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-orange-900 bg-orange-100 rounded-lg hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
                                 >
-                                <span>What is your refund policy?</span>
+                                <span>{{profile.name}}</span>
                                 </DisclosureButton>
-                                <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                If you're unhappy with your purchase for any reason, email us within
-                                90 days and we'll refund you in full, no questions asked.
+                                <DisclosurePanel class="p-1 text-sm text-gray-500" v-for="subMenus in profile.submenus">
+                                    <input @change="selectCheck($event.target.value, $event.target.checked)" v-model="subMenus.checked" :checked="subMenus.checked" class="ml-4 checkbox-menu" type="checkbox" :id="subMenus.id" :name="subMenus.id" :value="subMenus.id">
+                                    <label class="ml-2" :for="subMenus.id">{{ subMenus.name }}</label><br>
                                 </DisclosurePanel>
                             </Disclosure>
-                            <Disclosure as="div" class="mt-2" v-slot="{ open }">
-                                <DisclosureButton
-                                class="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-orange-900 bg-orange-100 rounded-lg hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
-                                >
-                                <span>Do you offer technical support?</span>
-                                </DisclosureButton>
-                                <DisclosurePanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
-                                No.
-                                </DisclosurePanel>
-                            </Disclosure>
-
                         </div>
                         <div class="flex justify-around">
                             <button
@@ -344,11 +333,13 @@
             submenus: [
                 {
                     id: 1,
-                    name: 'Dashboard'
+                    name: 'Dashboard',
+                    checked: false 
                 },
                 {
                     id: 2,
-                    name: 'Relatorios'
+                    name: 'Relatorios',
+                    checked: false 
                 }
             ]
         },
@@ -358,99 +349,182 @@
             submenus: [
                 {
                     id: 3,
-                    name: 'Cadastro e Edição'
+                    name: 'Cadastro e Edição',
+                    checked: false 
                 },
                 {
                     id: 4,
-                    name: 'Delete'
+                    name: 'Delete',
+                    checked: false 
                 },
                 {
                     id: 5,
-                    name: 'Solo'
+                    name: 'Ver metas somente dele',
+                    checked: false 
                 },
                 {
                     id: 6,
-                    name: 'Todos'
+                    name: 'Ver metas de todos',
+                    checked: false 
                 }
             ]
         },
         {
             id: 3,
             name: 'Projetos',
-            submenus: [{
+            submenus: [
                 {
                     id: 7,
-                    name: 'Cadastro e Edição'
+                    name: 'Cadastro e Edição',
+                    checked: false 
                 },
                 {
                     id: 8,
-                    name: 'Delete'
+                    name: 'Delete',
+                    checked: false 
                 },
                 {
                     id: 9,
-                    name: 'Solo'
+                    name: 'Solo',
+                    checked: false 
                 },
                 {
                     id: 10,
-                    name: 'Todos'
+                    name: 'Todos',
+                    checked: false 
                 }
-            }]
+            ]
         },
         {
             id: 4,
             name: 'Clientes',
-            submenus: [{
+            submenus: [
                 {
                     id: 11,
-                    name: 'Cadastro e Edição'
+                    name: 'Cadastro e Edição',
+                    checked: false 
                 },
                 {
                     id: 12,
-                    name: 'Delete'
+                    name: 'Delete',
+                    checked: false 
                 },
                 {
                     id: 13,
-                    name: 'Clientes'
+                    name: 'Clientes',
+                    checked: false 
                 },
                 {
                     id: 14,
-                    name: 'Metas'
+                    name: 'Metas',
+                    checked: false 
                 },
                 {
                     id: 15,
-                    name: 'Provaveis'
+                    name: 'Provaveis',
+                    checked: false 
                 }
-            }]
+            ]
         },
         {
             id: 5,
             name: 'Fornecedores',
-            submenus: [{
-
-            }]
+            submenus: [
+                {
+                    id: 16,
+                    name: 'Fornecedores',
+                    checked: false 
+                },
+                {
+                    id: 17,
+                    name: 'Cadastro e Edição',
+                    checked: false 
+                },
+                {
+                    id: 18,
+                    name: 'Delete',
+                    checked: false 
+                }
+            ]
         },
         {
             id: 6,
             name: 'Produtos',
-            submenus: [{
-
-            }]
+            submenus: [
+                {
+                    id: 19,
+                    name: 'Produtos',
+                    checked: false 
+                },
+                {
+                    id: 20,
+                    name: 'Cadastro e Edição',
+                    checked: false 
+                },
+                {
+                    id: 21,
+                    name: 'Delete',
+                    checked: false 
+                }
+            ]
         },
         {
             id: 7,
             name: 'Funcionarios',
-            submenus: [{
-
-            }]
+            submenus: [
+                {
+                    id: 22,
+                    name: 'Produtos',
+                    checked: false 
+                },
+                {
+                    id: 23,
+                    name: 'Cadastro e Edição',
+                    checked: false 
+                },
+                {
+                    id: 24,
+                    name: 'Delete',
+                    checked: false 
+                }
+            ]
         },
         {
             id: 8,
             name: 'Ajustes',
-            submenus: [{
-
-            }]
+            submenus: [
+                {
+                    id: 25,
+                    name: 'Perfil',
+                    checked: false 
+                },
+                {
+                    id: 26,
+                    name: 'Usuarios',
+                    checked: false 
+                },
+                {
+                    id: 27,
+                    name: 'Graficos',
+                    checked: false 
+                }
+            ]
         }
     ])
+    const selectRoutes = ref([]);
+
+    const selectCheck = (id: number, valor: boolean) => {
+        if(valor){
+            selectRoutes.value.push(id);
+        }else{
+            let index = selectRoutes.value.indexOf(id);
+            if(index >= 0){
+                selectRoutes.value.splice(index, 1);
+            }
+        }
+
+        console.log(selectRoutes.value);
+    }
 
     const routersModal = (user: {}) => {
         id.value = user.id;
@@ -607,8 +681,6 @@
             arr.push(listPerfil.value[i - 1]);
         }
 
-        console.log(arr);
-
         listPerfilCurrentPage.value = arr;
     }
 
@@ -652,15 +724,11 @@
     }
 
     const routersProfile = () => {
-        let data = {
-            id:         id.value,
-            senha:      senha.value
-        };
-
-        console.log(data);
+        console.log(routers.value);
+        console.log(routers.value.length);
 
         createToast({
-            title: 'Senha atualizada,',
+            title: 'Rotas vinculadas,',
             description: 'com sucesso!'
         },
         {
